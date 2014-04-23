@@ -1,8 +1,6 @@
 <?php
 
     class minimap {
-        // http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
-
         public function renderMiniMap(array $building_status) {
             foreach($building_status as $building_status_set) {
                 foreach($building_status_set as $building) {
@@ -56,7 +54,7 @@
 
             if ($error) {
                 echo "Error recieved from dota2 api: " . $error;
-                return false;
+                exit;
             }
 
             // close curl
@@ -89,7 +87,7 @@
 
             if (!$match_id) {
                 echo "No match_id argument provided in url";
-                return false;
+                exit;
             } else {
                 return $match_id;
             }
