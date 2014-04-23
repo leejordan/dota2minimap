@@ -8,7 +8,7 @@
     <body>
         <?php
             require_once('php/minimap.php');
-            //minimap\renderMiniMapFromUrl();
+            minimap\renderMiniMapFromUrl();
 
             // for offline testing
             // $building_status = minimap\getBuildingStatusAsArray(1974, 0, 63, 0);
