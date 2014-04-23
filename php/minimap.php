@@ -1,7 +1,7 @@
 <?php
 
-    class minimap {
-        public function renderMiniMap(array $building_status) {
+    namespace minimap {
+        function renderMiniMap(array $building_status) {
             foreach($building_status as $building_status_set) {
                 foreach($building_status_set as $building) {
                     echo $building . "<br>";
@@ -10,28 +10,28 @@
             }
         }
 
-        public function renderMiniMapFromUrl() {
-            $match_details = self::getMatchDetails(self::getMatchId());
-            $building_status = self::getBuildingStatusFromMatchDetails($match_details);
+        function renderMiniMapFromUrl() {
+            $match_details = getMatchDetails(getMatchId());
+            $building_status = getBuildingStatusFromMatchDetails($match_details);
 
-            self::renderMiniMap($building_status);
+            renderMiniMap($building_status);
         }
 
-        public function renderMiniMapFromArray(array $building_status) {
-            self::renderMiniMap($building_status);
+        function renderMiniMapFromArray(array $building_status) {
+            renderMiniMap($building_status);
         }
 
-        public function getBuildingStatusAsArray($tower_status_radiant, $barracks_status_radiant, $tower_status_dire, $barracks_status_dire) {
+        function getBuildingStatusAsArray($tower_status_radiant, $barracks_status_radiant, $tower_status_dire, $barracks_status_dire) {
             $building_status_array = array();
-            $building_status_array['tower_status_radiant'] = array_pad(self::convertStatusIntToArray($tower_status_radiant), 11, 0);
-            $building_status_array['barracks_status_radiant'] = array_pad(self::convertStatusIntToArray($barracks_status_radiant), 6, 0);
-            $building_status_array['tower_status_dire'] = array_pad(self::convertStatusIntToArray($tower_status_dire), 11, 0);
-            $building_status_array['barracks_status_dire'] = array_pad(self::convertStatusIntToArray($barracks_status_dire), 6, 0);
+            $building_status_array['tower_status_radiant'] = array_pad(convertStatusIntToArray($tower_status_radiant), 11, 0);
+            $building_status_array['barracks_status_radiant'] = array_pad(convertStatusIntToArray($barracks_status_radiant), 6, 0);
+            $building_status_array['tower_status_dire'] = array_pad(convertStatusIntToArray($tower_status_dire), 11, 0);
+            $building_status_array['barracks_status_dire'] = array_pad(convertStatusIntToArray($barracks_status_dire), 6, 0);
 
             return $building_status_array;
         }
 
-        private function getMatchDetails($match_id) {
+        function getMatchDetails($match_id) {
             // create a new cURL resource
             $request_match_details = curl_init();
 
@@ -45,14 +45,8 @@
             $match_details_object = json_decode($match_details_json, true);
 
             // check response for problems
-            $error = null;
-            if (isset($match_details_object ['result']['error'])) {
-                $error = $match_details_object ['result']['error'];
-            } else {
-                $error = false;
-            }
-
-            if ($error) {
+            if (isset($match_details_object['result']['error'])) {
+                $error = $match_details_object['result']['error'];
                 echo "Error recieved from dota2 api: " . $error;
                 exit;
             }
@@ -63,7 +57,7 @@
             return $match_details_object;
         }
 
-        private function getBuildingStatusFromMatchDetails($match_details) {
+        function getBuildingStatusFromMatchDetails($match_details) {
             // Radiant
             $tower_status_radiant = $match_details['result']['tower_status_radiant'];
             $barracks_status_radiant = $match_details['result']['barracks_status_radiant'];
@@ -73,16 +67,16 @@
             $barracks_status_dire = $match_details['result']['barracks_status_dire'];
 
             // convert to array of boolean values
-            $building_status_array = self::getBuildingStatusAsArray($tower_status_radiant, $barracks_status_radiant, $tower_status_dire, $barracks_status_dire);
+            $building_status_array = getBuildingStatusAsArray($tower_status_radiant, $barracks_status_radiant, $tower_status_dire, $barracks_status_dire);
 
             return $building_status_array;
         }
 
-        private function convertStatusIntToArray($buildingStatus) {
+        function convertStatusIntToArray($buildingStatus) {
             return str_split(decbin($buildingStatus));
         }
 
-        private function getMatchId() {
+        function getMatchId() {
             $match_id = isset($_GET['match_id']) ? $_GET["match_id"] : null;
 
             if (!$match_id) {
@@ -93,5 +87,3 @@
             }
         }
     }
-
-?>
