@@ -55,10 +55,10 @@
 
         function getBuildingStatusAsArray($tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire) {
             // set up an array of keys
-            $tower_status_radiant_array_keys = ['rad_top_t4', 'rad_bot_t4', 'rad_bot_t3', 'rad_bot_t2', 'rad_bot_t1', 'rad_mid_t3', 'rad_mid_t2', 'rad_mid_t1', 'rad_top_t3', 'rad_top_t2', 'rad_top_t1'];
-            $rax_status_radiant_array_keys = ['rad_rax_bot_ranged', 'rad_rax_bot_melee', 'rad_rax_mid_ranged', 'rad_rax_mid_melee', 'rad_rax_top_ranged', 'rad_rax_top_melee'];
-            $tower_status_dire_array_keys = ['dire_top_t4', 'dire_bot_t4', 'dire_bot_t3', 'dire_bot_t2', 'dire_bot_t1', 'dire_mid_t3', 'dire_mid_t2', 'dire_mid_t1', 'dire_top_t3', 'dire_top_t2', 'dire_top_t1'];
-            $rax_status_dire_array_keys = ['dire_rax_bot_ranged', 'dire_rax_bot_melee', 'dire_rax_mid_ranged', 'dire_rax_mid_melee', 'dire_rax_top_ranged', 'dire_rax_top_melee'];
+            $tower_status_radiant_array_keys = array('rad_top_t4', 'rad_bot_t4', 'rad_bot_t3', 'rad_bot_t2', 'rad_bot_t1', 'rad_mid_t3', 'rad_mid_t2', 'rad_mid_t1', 'rad_top_t3', 'rad_top_t2', 'rad_top_t1');
+            $rax_status_radiant_array_keys = array('rad_rax_bot_ranged', 'rad_rax_bot_melee', 'rad_rax_mid_ranged', 'rad_rax_mid_melee', 'rad_rax_top_ranged', 'rad_rax_top_melee');
+            $tower_status_dire_array_keys = array('dire_top_t4', 'dire_bot_t4', 'dire_bot_t3', 'dire_bot_t2', 'dire_bot_t1', 'dire_mid_t3', 'dire_mid_t2', 'dire_mid_t1', 'dire_top_t3', 'dire_top_t2', 'dire_top_t1');
+            $rax_status_dire_array_keys = array('dire_rax_bot_ranged', 'dire_rax_bot_melee', 'dire_rax_mid_ranged', 'dire_rax_mid_melee', 'dire_rax_top_ranged', 'dire_rax_top_melee');
 
             // trim our array to remove the unused bits
             $tower_status_radiant_array_values = array_pad(convertStatusIntToArray($tower_status_radiant), 11, 0);
