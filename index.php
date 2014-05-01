@@ -8,13 +8,11 @@
     <body>
         <?php
             require_once('php/minimap.php');
-            // minimap\renderMiniMapFromUrl();
+            minimap\renderMiniMapFromUrl();
 
             // all towers
-            $building_status = minimap\getBuildingStatusAsArray(2047, 63, 2047, 63);
+            //$building_status = minimap\getBuildingStatusAsArray(2047, 63, 2047, 63);
 
-            // random
-            // $building_status = minimap\getBuildingStatusAsArray(1974, 0, 63, 0);
             minimap\renderMiniMapFromArray($building_status);
         ?>
     </body>
