@@ -2,12 +2,44 @@
 
     namespace minimap {
         function renderMiniMap(array $building_status) {
-            foreach($building_status as $building_status_set) {
-                foreach($building_status_set as $building) {
-                    echo $building . "<br>";
+            echo "<div class='minimap_wrap'>";
+                echo "<img class='minimap' src='images/minimap.jpg'/>";
+
+                // radiant towers
+                $tower_status_radiant = $building_status['tower_status_radiant'];
+                foreach($tower_status_radiant as $key => $value) {
+                    if($value == 1) {
+                        echo "<div class='building tower $key'></div>";
+                    }
                 }
-                echo "<hr>";
-            }
+
+                // radiant rax
+                $rax_status_radiant = $building_status['rax_status_radiant'];
+                foreach($rax_status_radiant as $key => $value) {
+                    if($value == 1) {
+                        echo "<div class='building rax $key'></div>";
+                    }
+                }
+
+                // dire towers
+                $tower_status_dire = $building_status['tower_status_dire'];
+                foreach($tower_status_dire as $key => $value) {
+                    if($value == 1) {
+                        echo "<div class='building tower dire $key'></div>";
+                    }
+                }
+
+                // dire rax
+                $rax_status_dire = $building_status['rax_status_dire'];
+                foreach($rax_status_dire as $key => $value) {
+                    if($value == 1) {
+                        echo "<div class='building rax dire $key'></div>";
+                    }
+                }
+
+
+
+            echo "</div>";
         }
 
         function renderMiniMapFromUrl() {
@@ -21,12 +53,31 @@
             renderMiniMap($building_status);
         }
 
-        function getBuildingStatusAsArray($tower_status_radiant, $barracks_status_radiant, $tower_status_dire, $barracks_status_dire) {
+        function getBuildingStatusAsArray($tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire) {
+            // set up an array of keys
+            $tower_status_radiant_array_keys = ['rad_top_t4', 'rad_bot_t4', 'rad_bot_t3', 'rad_bot_t2', 'rad_bot_t1', 'rad_mid_t3', 'rad_mid_t2', 'rad_mid_t1', 'rad_top_t3', 'rad_top_t2', 'rad_top_t1'];
+            $rax_status_radiant_array_keys = ['rad_rax_bot_ranged', 'rad_rax_bot_melee', 'rad_rax_mid_ranged', 'rad_rax_mid_melee', 'rad_rax_top_ranged', 'rad_rax_top_melee'];
+            $tower_status_dire_array_keys = ['dire_top_t4', 'dire_bot_t4', 'dire_bot_t3', 'dire_bot_t2', 'dire_bot_t1', 'dire_mid_t3', 'dire_mid_t2', 'dire_mid_t1', 'dire_top_t3', 'dire_top_t2', 'dire_top_t1'];
+            $rax_status_dire_array_keys = ['dire_rax_bot_ranged', 'dire_rax_bot_melee', 'dire_rax_mid_ranged', 'dire_rax_mid_melee', 'dire_rax_top_ranged', 'dire_rax_top_melee'];
+
+            // trim our array to remove the unused bits
+            $tower_status_radiant_array_values = array_pad(convertStatusIntToArray($tower_status_radiant), 11, 0);
+            $rax_status_radiant_array_values = array_pad(convertStatusIntToArray($rax_status_radiant), 6, 0);
+            $tower_status_dire_array_values = array_pad(convertStatusIntToArray($tower_status_dire), 11, 0);
+            $rax_status_dire_array_values = array_pad(convertStatusIntToArray($rax_status_dire), 6, 0);
+
+            // combine our keys and values together
+            $tower_status_radiant_array_keyed = array_combine($tower_status_radiant_array_keys, $tower_status_radiant_array_values);
+            $rax_status_radiant_array_keyed = array_combine($rax_status_radiant_array_keys, $rax_status_radiant_array_values);
+            $tower_status_dire_array_keyed = array_combine($tower_status_dire_array_keys, $tower_status_dire_array_values);
+            $rax_status_dire_array_keyed = array_combine($rax_status_dire_array_keys, $rax_status_dire_array_values);
+
+            // populate our final formatted array
             $building_status_array = array();
-            $building_status_array['tower_status_radiant'] = array_pad(convertStatusIntToArray($tower_status_radiant), 11, 0);
-            $building_status_array['barracks_status_radiant'] = array_pad(convertStatusIntToArray($barracks_status_radiant), 6, 0);
-            $building_status_array['tower_status_dire'] = array_pad(convertStatusIntToArray($tower_status_dire), 11, 0);
-            $building_status_array['barracks_status_dire'] = array_pad(convertStatusIntToArray($barracks_status_dire), 6, 0);
+            $building_status_array['tower_status_radiant'] = $tower_status_radiant_array_keyed;
+            $building_status_array['rax_status_radiant'] = $rax_status_radiant_array_keyed;
+            $building_status_array['tower_status_dire'] = $tower_status_dire_array_keyed;
+            $building_status_array['rax_status_dire'] = $rax_status_dire_array_keyed;
 
             return $building_status_array;
         }
@@ -60,14 +111,17 @@
         function getBuildingStatusFromMatchDetails($match_details) {
             // Radiant
             $tower_status_radiant = $match_details['result']['tower_status_radiant'];
-            $barracks_status_radiant = $match_details['result']['barracks_status_radiant'];
+            $rax_status_radiant = $match_details['result']['barracks_status_radiant'];
 
             // Dire
             $tower_status_dire = $match_details['result']['tower_status_dire'];
-            $barracks_status_dire = $match_details['result']['barracks_status_dire'];
+            $rax_status_dire = $match_details['result']['barracks_status_dire'];
 
-            // convert to array of boolean values
-            $building_status_array = getBuildingStatusAsArray($tower_status_radiant, $barracks_status_radiant, $tower_status_dire, $barracks_status_dire);
+            // debug
+            //echo "$tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire";
+
+            // convert to final array format
+            $building_status_array = getBuildingStatusAsArray($tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire);
 
             return $building_status_array;
         }

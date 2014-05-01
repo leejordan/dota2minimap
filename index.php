@@ -8,15 +8,14 @@
     <body>
         <?php
             require_once('php/minimap.php');
-            minimap\renderMiniMapFromUrl();
+            // minimap\renderMiniMapFromUrl();
 
-            // for offline testing
+            // all towers
+            $building_status = minimap\getBuildingStatusAsArray(2047, 63, 2047, 63);
+
+            // random
             // $building_status = minimap\getBuildingStatusAsArray(1974, 0, 63, 0);
-            // $building_status = minimap\getBuildingStatusAsArray(388, 51, 1975, 631);
-            // minimap\renderMiniMapFromArray($building_status);
-
-            // Further reading:
-            // http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
+            minimap\renderMiniMapFromArray($building_status);
         ?>
     </body>
 </html>

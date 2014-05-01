@@ -1,0 +1,228 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+.minimap_wrap {
+    margin: 0 auto;
+    position: relative;
+    width: auto;
+    height: auto;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 1024px;
+}
+
+.minimap {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* generic building classes */
+.building {
+    display: block;
+    position: absolute;
+    width: 4%;
+    height: 4%;
+    max-width: 32px;
+    max-height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.tower {
+    background-image: url(../images/tower_radiant.png);
+}
+
+.tower.dire {
+    background-image: url(../images/tower_dire.png);
+}
+
+.rax {
+    background-image: url(../images/rax_radiant.png);
+}
+
+.rax.dire {
+    background-image: url(../images/rax_dire.png);
+}
+
+/* radiant */
+.rad_top_t4 {
+    top: 76%;
+    left: 13%;
+}
+
+.rad_bot_t4 {
+    top: 79%;
+    left: 16%;
+}
+
+.rad_bot_t3 {
+    top: 85%;
+    left: 26%;
+}
+
+.rad_bot_t2 {
+    top: 85%;
+    left: 45%;
+}
+
+.rad_bot_t1 {
+     top: 84%;
+     left: 80%;
+}
+
+.rad_mid_t3 {
+    top: 72%;
+    left: 21%;
+}
+
+.rad_mid_t2 {
+    top: 65%;
+    left: 28%;
+}
+
+.rad_mid_t1 {
+    top: 56%;
+    left: 39%;
+}
+
+.rad_top_t3 {
+    top: 67%;
+    left: 8%;
+}
+
+.rad_top_t2 {
+    top: 53%;
+    left: 10%;
+}
+
+.rad_top_t1 {
+    top: 36%;
+    left: 10%;
+}
+
+.rad_rax_bot_ranged {
+    top: 84%;
+    left: 22%;
+}
+
+.rad_rax_bot_melee {
+    top: 87%;
+    left: 22%;
+}
+
+.rad_rax_mid_ranged {
+    top: 72%;
+    left: 17%;
+}
+
+.rad_rax_mid_melee {
+    top: 75%;
+    left: 20%;
+}
+
+.rad_rax_top_ranged {
+    top: 69%;
+    left: 6%;
+}
+
+.rad_rax_top_melee {
+    top: 69%;
+    left: 10%;
+}
+
+/* dire */
+.dire_top_t4 {
+    top: 18%;
+    left: 80%;
+}
+
+.dire_bot_t4 {
+    top: 20%;
+    left: 83%;
+}
+
+.dire_bot_t3 {
+    top: 31%;
+    left: 87%;
+}
+
+.dire_bot_t2 {
+    top: 47%;
+    left: 87%;
+}
+
+.dire_bot_t1 {
+     top: 60%;
+     left: 86%;
+}
+
+.dire_mid_t3 {
+    top: 26%;
+    left: 74%;
+}
+
+.dire_mid_t2 {
+    top: 34%;
+    left: 65%;
+}
+
+.dire_mid_t1 {
+    top: 45%;
+    left: 55%;
+}
+
+.dire_top_t3 {
+    top: 12%;
+    left: 70%;
+}
+
+.dire_top_t2 {
+    top: 12%;
+    left: 47%;
+}
+
+.dire_top_t1 {
+    top: 12%;
+    left: 18%;
+}
+
+.dire_rax_bot_ranged {
+    top: 28%;
+    left: 85%;
+}
+
+.dire_rax_bot_melee {
+    top: 28%;
+    left: 89%;
+}
+
+.dire_rax_mid_ranged {
+    top: 23%;
+    left: 75%;
+}
+
+.dire_rax_mid_melee {
+    top: 25%;
+    left: 78%;
+}
+
+.dire_rax_top_ranged {
+    top: 11%;
+    left: 73%;
+}
+
+.dire_rax_top_melee {
+    top: 14%;
+    left: 73%;
+}
+
+
+
+
+
+
+
