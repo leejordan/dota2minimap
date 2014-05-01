@@ -12,8 +12,7 @@
 
             // all towers
             //$building_status = minimap\getBuildingStatusAsArray(2047, 63, 2047, 63);
-
-            minimap\renderMiniMapFromArray($building_status);
+            //minimap\renderMiniMapFromArray($building_status);
         ?>
     </body>
 </html>
