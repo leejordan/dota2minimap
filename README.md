@@ -10,4 +10,4 @@ There are two ways to use it.
 
 It should be easy enough to integrate it into a dota2 site that already handles parsing match details from the dota2 api. The elegant part is that the html is responsive and the minimap will look nice in any size viewport.
 
-demo: lendmeyourear.net
+demo: [http://lendmeyourear.net](http://lendmeyourear.net)
