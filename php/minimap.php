@@ -42,7 +42,7 @@
             echo "</div>";
         }
 
-        function renderMiniMapFromUrl() {
+        function renderMiniMapFromUrlOrPost() {
             $match_details = getMatchDetails(getMatchId());
             $building_status = getBuildingStatusFromMatchDetails($match_details);
 
@@ -132,6 +132,9 @@
 
         function getMatchId() {
             $match_id = isset($_GET['match_id']) ? $_GET["match_id"] : null;
+            if (!$match_id) {
+                $match_id = isset($_POST['match_id']) ? $_POST["match_id"] : null;
+            }
 
             if (!$match_id) {
                 echo "No match_id argument provided in url";

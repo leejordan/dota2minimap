@@ -6,13 +6,9 @@
         <link rel="stylesheet" href="css/minimap.css">
     </head>
     <body>
-        <?php
-            require_once('php/minimap.php');
-            minimap\renderMiniMapFromUrl();
-
-            // all towers
-            //$building_status = minimap\getBuildingStatusAsArray(2047, 63, 2047, 63);
-            //minimap\renderMiniMapFromArray($building_status);
-        ?>
+        <form method="post" action="minimap.php">
+            <label for="match_id">dota2 match id</label>
+            <input name="match_id" placeholder="e.g. 656600486" />
+        </form>
     </body>
 </html>
