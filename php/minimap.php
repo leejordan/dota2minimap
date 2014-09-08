@@ -1,6 +1,8 @@
 <?php
 
     namespace minimap {
+        const API_KEY = "<your api key>";
+
         function renderMiniMap(array $building_status) {
             echo "<div class='minimap_wrap'>";
                 echo "<img class='minimap' src='images/minimap.jpg'/>";
@@ -87,7 +89,7 @@
             $request_match_details = curl_init();
 
             // set URL and other appropriate options
-            curl_setopt($request_match_details, CURLOPT_URL, "http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v1/?match_id=" . $match_id . "&key=0BFD269FE91520E28E56CA39579AB6C6");
+            curl_setopt($request_match_details, CURLOPT_URL, "http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v1/?match_id=" . $match_id . "&key=" . API_KEY);
             curl_setopt($request_match_details, CURLOPT_HEADER, 0);
             curl_setopt($request_match_details, CURLOPT_RETURNTRANSFER, 1);
 
