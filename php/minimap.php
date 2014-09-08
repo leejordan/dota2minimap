@@ -61,10 +61,10 @@
             $rax_status_dire_array_keys = array('dire_rax_bot_ranged', 'dire_rax_bot_melee', 'dire_rax_mid_ranged', 'dire_rax_mid_melee', 'dire_rax_top_ranged', 'dire_rax_top_melee');
 
             // trim our array to remove the unused bits
-            $tower_status_radiant_array_values = array_pad(convertStatusIntToArray($tower_status_radiant), 11, 0);
-            $rax_status_radiant_array_values = array_pad(convertStatusIntToArray($rax_status_radiant), 6, 0);
-            $tower_status_dire_array_values = array_pad(convertStatusIntToArray($tower_status_dire), 11, 0);
-            $rax_status_dire_array_values = array_pad(convertStatusIntToArray($rax_status_dire), 6, 0);
+            $tower_status_radiant_array_values = array_pad(convertStatusIntToArray($tower_status_radiant), -11, 0);
+            $rax_status_radiant_array_values = array_pad(convertStatusIntToArray($rax_status_radiant), -6, 0);
+            $tower_status_dire_array_values = array_pad(convertStatusIntToArray($tower_status_dire), -11, 0);
+            $rax_status_dire_array_values = array_pad(convertStatusIntToArray($rax_status_dire), -6, 0);
 
             // combine our keys and values together
             $tower_status_radiant_array_keyed = array_combine($tower_status_radiant_array_keys, $tower_status_radiant_array_values);
@@ -118,7 +118,7 @@
             $rax_status_dire = $match_details['result']['barracks_status_dire'];
 
             // debug
-            //echo "$tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire";
+            // echo "$tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire";
 
             // convert to final array format
             $building_status_array = getBuildingStatusAsArray($tower_status_radiant, $rax_status_radiant, $tower_status_dire, $rax_status_dire);
