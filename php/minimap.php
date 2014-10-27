@@ -97,6 +97,12 @@
             $match_details_json = curl_exec($request_match_details);
             $match_details_object = json_decode($match_details_json, true);
 
+            // check response is not empty
+            if (empty($match_details_json)) {
+                echo "API response is empty. Could the steam api be down?";
+                exit;
+            }
+
             // check response for problems
             if (isset($match_details_object['result']['error'])) {
                 $error = $match_details_object['result']['error'];
