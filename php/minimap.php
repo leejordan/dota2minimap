@@ -5,7 +5,7 @@
 
         function renderMiniMap(array $building_status) {
             echo "<div class='minimap_wrap'>";
-                echo "<img class='minimap' src='images/minimap.jpg'/>";
+                echo "<img class='minimap' src='images/minimap.png'/>";
 
                 // radiant towers
                 $tower_status_radiant = $building_status['tower_status_radiant'];
